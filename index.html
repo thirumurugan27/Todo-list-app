@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+   
+    <title>White and Black Boxes</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="box left-box">
+            <h1 style="padding: 15px; font-size: 400%;">Todo List</h1>
+
+            <h1 style="font-size: 350%;">Add Tasks</h1>
+            
+            <input type="text" id="inp" placeholder="Enter your task...">
+            
+            <button class="btn" onclick="add()">Add</button>
+
+        </div>
+
+
+        <div class="box right-box">
+
+            <h1 style="font-size: 250%; text-align: center; color:brown;">Your Tasks</h1>
+            <ul id="list">
+                    
+            </ul>
+            </table>
+
+        </div>
+
+
+    </div>
+</body>
+
+<style>
+    .container {
+        display: flex;
+    }
+
+    .box {
+        width: 50%;
+        height: 100vh;
+        border-radius: 20px;
+    }
+
+    .left-box {
+        background-color: lightgreen;
+        text-align: center;
+        color: white;
+    }
+
+    .right-box {
+        background-color: beige;
+        color: black;
+    }
+
+    .btn {
+        border-radius: 5px;
+        height: 4.5%;
+        width: 10%;
+    }
+
+    #inp {
+        width: 60%;
+        border-radius: 5px;
+        height: 4%;
+    }
+
+    #list {
+        padding: 20px;
+        list-style-type: none;
+    }
+
+    li {
+        padding: 10px;
+        font-size: 150%;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+    }
+
+    .list {
+        padding: 20px;
+    }
+
+    #butt {
+        border-radius: 4px;
+        margin-left: 100px;
+    }
+    #butts {
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+</style>
+
+
+<script>
+    var input = document.getElementById("inp");
+    var list = document.getElementById("list");
+
+    function add() {
+        if (input.value.trim() === "") {
+            alert("Please write something");
+            return;
+        }
+        var listitem = document.createElement("li");
+        listitem.innerHTML = "<span>" + input.value + "</span> <button id=\"butt\" onclick='complete(event)'>Completed</button> <button id=\"butts\" onclick='removeItem(event)'>Delete</button>";
+        listitem.style.marginLeft = "10%";
+        listitem.style.listStyleType = "none";
+        listitem.style.border = "2px solid white";
+        list.appendChild(listitem);
+        input.value = "";
+    }
+
+    function complete(event) 
+    {
+        var item = event.target.parentElement;
+        var textNode = item.querySelector("span");
+        textNode.style.textDecoration = "line-through";
+    }
+    function removeItem(event) {
+        var item = event.target.parentElement;
+        list.removeChild(item);
+    }
+</script>
